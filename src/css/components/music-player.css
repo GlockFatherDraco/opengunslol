@@ -1,21 +1,18 @@
 .music-player {
   position: relative;
   display: flex;
-  place-items: center;
+  align-items: center;
   inline-size: 100%;
   max-inline-size: 500px;
   block-size: 80px;
   margin-block-start: 10px;
-  padding-block: 0;
   padding-inline: 20px;
   gap: 15px;
   overflow: hidden;
-  background: transparent;
   border-radius: var(--card-border-radius, 20px);
   backdrop-filter: blur(var(--card-blur, 8px));
   -webkit-backdrop-filter: blur(var(--card-blur, 8px));
-  z-index: 2;
-  transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: opacity 0.8s cubic-bezier(0.34,1.56,0.64,1), transform 0.8s cubic-bezier(0.34,1.56,0.64,1);
 }
 
 .music-player::before {
@@ -26,13 +23,13 @@
   background-blend-mode: overlay;
   opacity: calc(var(--card-opacity, 100) / 100);
   border-radius: inherit;
-  z-index: 2;
   pointer-events: none;
+  z-index: 0;
 }
 
 .music-player > * {
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 .music-cover {
@@ -40,7 +37,7 @@
   inline-size: 50px;
   block-size: 50px;
   object-fit: cover;
-  border-inline: 2px solid var(--accent-color, #fff);
+  border: 2px solid var(--accent-color, #fff);
   border-radius: 8px;
 }
 
@@ -50,6 +47,7 @@
   flex-direction: column;
   gap: 8px;
   min-inline-size: 0;
+  overflow: hidden;
 }
 
 .music-track-name {
@@ -63,7 +61,7 @@
 
 .music-seekbar-container {
   display: flex;
-  place-items: center;
+  align-items: center;
   gap: 8px;
   flex: 1;
 }
@@ -100,6 +98,7 @@
   background: var(--text-color, #000);
   border-radius: 2px;
   pointer-events: none;
+  transition: inline-size 120ms linear;
 }
 
 .music-seekbar:hover {
@@ -108,22 +107,21 @@
 
 .music-controls {
   display: flex;
-  place-items: center;
+  align-items: center;
   gap: 10px;
   flex-shrink: 0;
 }
 
 .music-control-btn {
   display: flex;
-  place-items: center;
+  align-items: center;
   justify-content: center;
-  padding-block: 5px;
-  padding-inline: 5px;
+  padding: 5px;
   background: transparent;
   border: none;
-  outline: none;
   color: var(--icon-color, inherit);
   cursor: pointer;
+  line-height: 0;
 }
 
 .music-control-btn img {
@@ -176,21 +174,9 @@
     font-size: 13px;
   }
 
-  .music-control-btn img {
-    inline-size: 24px;
-    block-size: 24px;
-  }
-
-  .music-control-btn.play-pause img {
-    inline-size: 24px;
-    block-size: 24px;
-  }
-
   .music-control-btn.next-track img,
   .music-control-btn.prev-track img {
     inline-size: 16px;
     block-size: 16px;
-    filter: grayscale(1) brightness(0.5) contrast(0.8);
-    opacity: 0.6;
   }
 }
