@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 0;
+  z-index: 2;
   color: var(--icon-color);
   text-decoration: none;
   opacity: calc(var(--icon-opacity, 100) / 100);
