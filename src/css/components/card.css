@@ -9,12 +9,12 @@
   gap:25px;
   background:transparent;
   border-radius:var(--card-border-radius,20px);
-  backdrop-filter:blur(var(--card-blur,10px));
-  -webkit-backdrop-filter:blur(var(--card-blur,10px));
+  backdrop-filter:blur(var(--card-blur,10px)) opacity(calc(var(--card-opacity,100)/100));
+  -webkit-backdrop-filter:blur(var(--card-blur,10px)) opacity(calc(var(--card-opacity,100)/100));
   position:relative;
   overflow:visible;
   z-index:2;
-  transition:opacity .8s cubic-bezier(.34,1.56,.64,1), transform .8s cubic-bezier(.34,1.56,.64,1);
+  transition:opacity .8s cubic-bezier(.34,1.56,.64,1),transform .8s cubic-bezier(.34,1.56,.64,1);
 }
 
 .card::before{
