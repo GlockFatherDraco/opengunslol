@@ -1,11 +1,12 @@
 .music-player {
   position: relative;
   display: flex;
-  align-items: center;
+  place-items: center;
   inline-size: 100%;
   max-inline-size: 500px;
   block-size: 80px;
   margin-block-start: 10px;
+  padding-block: 0;
   padding-inline: 20px;
   gap: 15px;
   overflow: hidden;
@@ -39,7 +40,7 @@
   inline-size: 50px;
   block-size: 50px;
   object-fit: cover;
-  border: 2px solid var(--accent-color, #fff);
+  border-inline: 2px solid var(--accent-color, #fff);
   border-radius: 8px;
 }
 
@@ -62,7 +63,7 @@
 
 .music-seekbar-container {
   display: flex;
-  align-items: center;
+  place-items: center;
   gap: 8px;
   flex: 1;
 }
@@ -107,16 +108,17 @@
 
 .music-controls {
   display: flex;
-  align-items: center;
+  place-items: center;
   gap: 10px;
   flex-shrink: 0;
 }
 
 .music-control-btn {
   display: flex;
-  align-items: center;
+  place-items: center;
   justify-content: center;
-  padding: 5px;
+  padding-block: 5px;
+  padding-inline: 5px;
   background: transparent;
   border: none;
   outline: none;
