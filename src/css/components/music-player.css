@@ -12,6 +12,7 @@
   border-radius:var(--card-border-radius,20px);
   backdrop-filter:blur(var(--card-blur,8px));
   -webkit-backdrop-filter:blur(var(--card-blur,8px));
+  opacity:calc(var(--card-opacity,100)/100);
   transition:opacity .8s cubic-bezier(.34,1.56,.64,1),transform .8s cubic-bezier(.34,1.56,.64,1);
 }
 
@@ -19,7 +20,9 @@
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(135deg,var(--primary-gradient,transparent),var(--secondary-gradient,transparent)),var(--accent-color,transparent);
+  background:
+    linear-gradient(135deg,var(--primary-gradient,transparent),var(--secondary-gradient,transparent)),
+    var(--accent-color,transparent);
   background-blend-mode:overlay;
   opacity:calc(var(--card-opacity,100)/100);
   border-radius:inherit;
