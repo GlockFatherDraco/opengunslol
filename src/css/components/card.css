@@ -10,9 +10,9 @@
   padding: 50px;
   gap: 25px;
   background: transparent;
-  border-radius: var(--card-border-radius);
-  backdrop-filter: blur(var(--card-blur);
-  -webkit-backdrop-filter: blur(var(--card-blur);
+  border-radius: var(--card-border-radius, 20px);
+  backdrop-filter: blur(var(--card-blur, 10px));
+  -webkit-backdrop-filter: blur(var(--card-blur, 10px));
   position: relative;
   overflow: visible;
   z-index: 10;
