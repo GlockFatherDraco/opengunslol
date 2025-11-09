@@ -1,48 +1,35 @@
 function initCardAnimation() {
-    const card = document.querySelector('.card');
-    const musicPlayer = document.querySelector('.music-player');
-    const volumeButton = document.querySelector('.volume-control-wrapper');
-    
-    if (card) {
-        card.style.transform = 'translateY(-50px)';
-        card.style.opacity = '0';
-    }
-    
-    if (musicPlayer) {
-        musicPlayer.style.transform = 'translateY(50px)';
-        musicPlayer.style.opacity = '0';
-    }
-    
-    if (volumeButton) {
-        volumeButton.style.transform = 'translateX(-50px)';
-        volumeButton.style.opacity = '0';
-    }
-    
+  const card = document.querySelector('.card');
+  const musicPlayer = document.querySelector('.music-player');
+  const volumeButton = document.querySelector('.volume-control-wrapper');
+  const easing = 'cubic-bezier(0.34,1.56,0.64,1)';
+  const dur = '0.8s';
+  const baseDelay = 5;
+
+  const setInitial = (el, transform) => {
+    if (!el) return;
+    el.style.transform = transform;
+    el.style.opacity = '0';
+  };
+
+  const animate = (el, transform, delay = 0) => {
+    if (!el) return;
     setTimeout(() => {
-        if (card) {
-            card.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }
-        
-        if (musicPlayer) {
-            setTimeout(() => {
-                musicPlayer.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                musicPlayer.style.opacity = '1';
-                musicPlayer.style.transform = 'translateY(0)';
-            }, 75);
-        }
-        
-        if (volumeButton) {
-            setTimeout(() => {
-                volumeButton.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                volumeButton.style.opacity = '1';
-                volumeButton.style.transform = 'translateX(0)';
-            }, 150);
-        }
-    }, 5);
+      el.style.transition = `transform ${dur} ${easing}, opacity ${dur} ${easing}`;
+      el.style.transform = transform;
+      el.style.opacity = '1';
+    }, delay);
+  };
+
+  setInitial(card, 'translateY(-50px)');
+  setInitial(musicPlayer, 'translateY(50px)');
+  setInitial(volumeButton, 'translateX(-50px)');
+
+  animate(card, 'translateY(0)', baseDelay);
+  animate(musicPlayer, 'translateY(0)', baseDelay + 75);
+  animate(volumeButton, 'translateX(0)', baseDelay + 150);
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { initCardAnimation };
+  module.exports = { initCardAnimation };
 }

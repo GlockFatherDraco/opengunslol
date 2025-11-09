@@ -1,12 +1,20 @@
-*{cursor:none!important}
-.custom-cursor{
-  position:fixed;
-  width:var(--cursor-size);
-  height:var(--cursor-size);
-  pointer-events:none;
-  z-index:100;
-  transform:translate(-50%,-50%);
-  background:var(--cursor-image) no-repeat center/contain;
-  will-change:transform
+:root {
+  --cursor-size: 24px;
 }
-@media(hover:none),(pointer:coarse){.custom-cursor{display:none!important}}
+
+.custom-cursor {
+  transition: opacity .2s ease;
+}
+
+* {
+  cursor: none !important;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+  * {
+    cursor: auto !important;
+  }
+}

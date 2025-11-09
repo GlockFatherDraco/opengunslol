@@ -1,92 +1,62 @@
 function initVolumeControl() {
-    const volumeButton = document.querySelector('.volume-button');
-    const volumeSlider = document.querySelector('.volume-slider');
-    const volumeSliderWrapper = document.querySelector('.volume-slider-wrapper');
-    
-    if (!volumeButton || !volumeSlider || !volumeSliderWrapper) return;
-    
-    let isMuted = false;
-    let previousVolume = 1.0;
-    
-    function updateVolumeIcon() {
-        if (isMuted) {
-            volumeButton.innerHTML = '<img src="src/assets/icons/music/volume-control/muted.svg" alt="Muted" style="width: 100%; height: 100%; object-fit: contain;">';
-        } else {
-            volumeButton.innerHTML = '<img src="src/assets/icons/music/volume-control/volume.svg" alt="Volume" style="width: 100%; height: 100%; object-fit: contain;">';
-        }
-    }
-    
+  const btn = document.querySelector('.volume-button');
+  const slider = document.querySelector('.volume-slider');
+  const wrapper = document.querySelector('.volume-slider-wrapper');
+  if (!btn || !slider || !wrapper) return;
 
-    
-    function getAudioElement() {
-        return typeof getAudio !== 'undefined' ? getAudio() : null;
-    }
-    
-    function setVolume(value) {
-        const audio = getAudioElement();
-        if (audio) {
-            audio.volume = value;
-            volumeSlider.value = value * 100;
-            volumeSliderWrapper.style.setProperty('--volume-percent', (value * 100) + '%');
-        }
-    }
-    
-    function toggleMute() {
-        const audio = getAudioElement();
-        if (!audio) return;
-        
-        if (isMuted) {
-            isMuted = false;
-            setVolume(previousVolume);
-        } else {
-            isMuted = true;
-            previousVolume = audio.volume;
-            setVolume(0);
-        }
-        updateVolumeIcon();
-    }
-    
-    volumeButton.addEventListener('dblclick', (e) => {
-        e.preventDefault();
-        toggleMute();
-    });
-    
-    function updateVolume(e) {
-        const volume = e.target.value / 100;
-        const audio = getAudioElement();
-        
-        if (audio) {
-            audio.volume = volume;
-            volumeSliderWrapper.style.setProperty('--volume-percent', e.target.value + '%');
-            
-            if (volume === 0) {
-                isMuted = true;
-            } else if (isMuted) {
-                isMuted = false;
-                previousVolume = volume;
-            }
-            updateVolumeIcon();
-        }
-    }
-    
-    function handleClick(e) {
-        const rect = volumeSlider.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
-        volumeSlider.value = percent;
-        updateVolume({ target: volumeSlider });
-    }
-    
-    volumeSlider.addEventListener('input', updateVolume);
-    volumeSlider.addEventListener('change', updateVolume);
-    volumeSlider.addEventListener('click', handleClick);
-    
-    setTimeout(() => {
-        setVolume(1.0);
-        updateVolumeIcon();
-    }, 100);
+  let muted = false;
+  let prevVol = 1;
+
+  const getAudioEl = () => typeof getAudio !== 'undefined' ? getAudio() : null;
+
+  const setIcon = () => {
+    const src = muted ? 'src/assets/icons/music/volume-control/muted.svg' : 'src/assets/icons/music/volume-control/volume.svg';
+    const alt = muted ? 'Muted' : 'Volume';
+    btn.innerHTML = `<img src="${src}" alt="${alt}" style="width:100%;height:100%;object-fit:contain;">`;
+  };
+
+  const setVolume = v => {
+    const audio = getAudioEl();
+    if (!audio) return;
+    audio.volume = v;
+    slider.value = v * 100;
+    wrapper.style.setProperty('--volume-percent', v * 100 + '%');
+  };
+
+  const toggleMute = () => {
+    const audio = getAudioEl();
+    if (!audio) return;
+    muted ? setVolume(prevVol) : (prevVol = audio.volume, setVolume(0));
+    muted = !muted;
+    setIcon();
+  };
+
+  const updateVolume = e => {
+    const v = e.target.value / 100;
+    const audio = getAudioEl();
+    if (!audio) return;
+    audio.volume = v;
+    wrapper.style.setProperty('--volume-percent', e.target.value + '%');
+    if (v === 0) muted = true;
+    else if (muted) { muted = false; prevVol = v; }
+    setIcon();
+  };
+
+  const handleClick = e => {
+    const rect = slider.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+    slider.value = pct;
+    updateVolume({ target: slider });
+  };
+
+  btn.addEventListener('dblclick', e => { e.preventDefault(); toggleMute(); });
+  slider.addEventListener('input', updateVolume);
+  slider.addEventListener('change', updateVolume);
+  slider.addEventListener('click', handleClick);
+
+  setTimeout(() => { setVolume(1); setIcon(); }, 100);
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { initVolumeControl };
+  module.exports = { initVolumeControl };
 }

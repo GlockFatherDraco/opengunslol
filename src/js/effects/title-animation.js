@@ -1,36 +1,22 @@
-(function() {
-    const prefix = '@';
-    const fullText = document.title.replace(prefix, '');
-    let currentIndex = 0;
-    let isTyping = true;
-    let typingSpeed = 500;
-    let pauseDuration = 3000;
-    
-    function animateTitle() {
-        if (isTyping) {
-            document.title = prefix + fullText.substring(0, currentIndex);
-            currentIndex++;
-            if (currentIndex > fullText.length) {
-                setTimeout(() => {
-                    isTyping = false;
-                    currentIndex = fullText.length;
-                    animateTitle();
-                }, pauseDuration);
-                return;
-            }
-        } else {
-            currentIndex--;
-            document.title = prefix + fullText.substring(0, currentIndex);
-            if (currentIndex === 0) {
-                setTimeout(() => {
-                    isTyping = true;
-                    animateTitle();
-                }, pauseDuration);
-                return;
-            }
-        }
-        setTimeout(animateTitle, typingSpeed);
+(() => {
+  const prefix = '@';
+  const fullText = document.title.replace(prefix, '');
+  let i = 0;
+  let typing = true;
+  const speed = 500;
+  const pause = 3000;
+
+  const step = () => {
+    document.title = prefix + fullText.substring(0, i);
+    if (typing) {
+      i++;
+      if (i > fullText.length) return setTimeout(() => { typing = false; i = fullText.length; step(); }, pause);
+    } else {
+      i--;
+      if (i === 0) return setTimeout(() => { typing = true; step(); }, pause);
     }
-    
-    animateTitle();
+    setTimeout(step, speed);
+  };
+
+  step();
 })();
