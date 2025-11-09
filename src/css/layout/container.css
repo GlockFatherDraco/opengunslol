@@ -23,7 +23,51 @@
   overflow: visible;
   background: transparent;
   border-radius: var(--card-border-radius, 20px);
-  transition: transform .8s cubic-bezier(.34,1.56,.64,1);
+  backdrop-filter: var(--card-blur) var(--card-opacity);
+  -webkit-backdrop-filter: var(--card-blur) var(--card-opacity);
+  transition: transform .8s cubic-bezier(.34,1.56,.64,1), opacity .8s cubic-bezier(.34,1.56,.64,1);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary-gradient, transparent), var(--secondary-gradient, transparent)), var(--accent-color, transparent);
+  background-blend-mode: overlay;
+  opacity: var(--card-opacity);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 4px solid var(--accent-color, #fff);
+  border-radius: var(--avatar-border-radius, 50%);
+  filter: blur(var(--avatar-blur, 0));
+}
+
+.username {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-color, #000);
+  text-align: center;
+}
+
+.description {
+  max-width: 90%;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-muted, #666);
+  text-align: center;
 }
 
 @media (max-width: 768px) {
