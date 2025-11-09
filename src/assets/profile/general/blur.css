@@ -1,5 +1,5 @@
 :root {
     --background-blur: 0;
-    --card-blur: 10;
+    --card-blur: 10px;
     --avatar-blur: 0;
 }
