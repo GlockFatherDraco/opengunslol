@@ -1,53 +1,52 @@
-.entry-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  background: var(--entry-overlay-color);
-  opacity: var(--entry-overlay-opacity);
-  cursor: pointer;
-  transition: opacity var(--entry-fade-duration) ease-out;
+.entry-overlay{
+  position:fixed;
+  inset:0;
+  z-index:4;
+  display:flex;
+  place-items:center;
+  place-content:center;
+  gap:20px;
+  background:var(--entry-overlay-color);
+  opacity:var(--entry-overlay-opacity,1);
+  cursor:pointer;
+  transition:opacity var(--entry-fade-duration,.4s) ease-out;
 }
 
-.entry-overlay.hidden {
-  opacity: 0;
-  pointer-events: none;
+.entry-overlay.hidden{
+  opacity:0;
+  pointer-events:none;
 }
 
-.entry-main-text::before {
-  content: var(--entry-main-text);
-  font-size: var(--entry-text-size);
-  font-weight: 700;
-  color: var(--entry-text-color);
-  animation: var(--entry-text-animation) 0.8s ease-out var(--entry-text-delay) both;
+.entry-main-text::before{
+  content:var(--entry-main-text,"");
+  font-size:var(--entry-text-size,2rem);
+  font-weight:700;
+  color:var(--entry-text-color,currentColor);
+  animation:var(--entry-text-animation,none) .8s ease-out var(--entry-text-delay,0s) both;
 }
 
-.entry-sub-text::before {
-  content: var(--entry-sub-text);
-  font-size: var(--entry-sub-text-size);
-  color: var(--entry-sub-text-color);
-  animation: var(--entry-text-animation) 0.8s ease-out var(--entry-sub-text-delay) both;
+.entry-sub-text::before{
+  content:var(--entry-sub-text,"");
+  font-size:var(--entry-sub-text-size,1rem);
+  color:var(--entry-sub-text-color,currentColor);
+  animation:var(--entry-text-animation,none) .8s ease-out var(--entry-sub-text-delay,0s) both;
 }
 
-.entry-sub-text {
-  animation: pulse 2s ease-in-out infinite;
-  animation-delay: var(--entry-sub-text-delay);
+.entry-sub-text{
+  animation:pulse 2s ease-in-out infinite;
+  animation-delay:var(--entry-sub-text-delay,0s);
 }
 
-body.entry-active {
-  overflow: hidden !important;
-  position: fixed;
-  inset: 0;
+body.entry-active{
+  overflow:hidden !important;
+  position:fixed;
+  inset:0;
 }
 
 body.entry-active .card,
 body.entry-active .music-player,
-body.entry-active .volume-control-wrapper {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none;
+body.entry-active .volume-control-wrapper{
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none;
 }
