@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initially hide elements that will be animated
     const card = document.querySelector('.card');
     const musicPlayer = document.querySelector('.music-player');
     const volumeButton = document.querySelector('.volume-control-wrapper');
