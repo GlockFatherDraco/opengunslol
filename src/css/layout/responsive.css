@@ -1,95 +1,95 @@
-@media (max-width: 600px) {    
-  body {    
-    padding-block: 15px;    
-    padding-inline: 15px;    
-  }    
-    
-  .card {    
-    padding-block: 25px;    
-    padding-inline: 15px;    
-    gap: 15px;    
-    min-block-size: 300px;    
-  }    
-    
-  .avatar {    
-    inline-size: 100px;    
-    block-size: 100px;    
-  }    
-    
-  .username {    
-    font-size: 26px;    
-  }    
-    
-  .description {    
-    font-size: 16px;    
-  }    
-    
-  .social-icons {    
-    gap: 15px;    
-  }    
-    
-  .social-icon svg {    
-    inline-size: 32px;    
-    block-size: 32px;    
-  }    
-    
-  .music-player {    
-    inline-size: 95%;    
-    max-inline-size: 95vw;    
-    block-size: 70px;    
-    padding-inline: 15px;    
-    gap: 12px;    
-    margin-block-start: 8px;    
-  }    
-    
-  .music-cover {    
-    inline-size: 45px;    
-    block-size: 45px;    
-  }    
-    
-  .music-track-name {    
-    font-size: 13px;    
-  }    
-    
-  .music-time {    
-    font-size: 10px;    
-    min-inline-size: 32px;    
-  }    
-    
-  .music-controls {    
-    gap: 8px;    
-  }    
-    
-  .music-control-btn img {    
-    inline-size: 18px;    
-    block-size: 18px;    
-  }    
-    
-  .music-control-btn.play-pause img {    
-    inline-size: 24px;    
-    block-size: 24px;    
-  }    
-}    
-    
-@media (max-width: 768px) {    
-  .container {    
-    inline-size: 95%;    
-    max-inline-size: 95vw;    
-    padding-block: 10px;    
-    padding-inline: 10px;    
-    gap: 10px;    
-  }    
-    
-  .card {    
-    inline-size: 95%;    
-    max-inline-size: 95vw;    
-    padding-block: 30px;    
-    padding-inline: 20px;    
-    min-block-size: 300px;    
-  }    
-    
-  .music-player {    
-    inline-size: 95%;    
-    max-inline-size: 95vw;    
-  }    
+@media (max-width: 600px) {
+  body {
+    padding-block: 15px;
+    padding-inline: 15px;
+  }
+
+  .card {
+    padding-block: 25px;
+    padding-inline: 15px;
+    gap: 15px;
+    min-block-size: 300px;
+  }
+
+  .avatar {
+    inline-size: 100px;
+    block-size: 100px;
+  }
+
+  .username {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .social-icons {
+    gap: 15px;
+  }
+
+  .social-icon svg {
+    inline-size: 32px;
+    block-size: 32px;
+  }
+
+  .music-player {
+    inline-size: 95%;
+    max-inline-size: 95vw;
+    block-size: 70px;
+    padding-inline: 15px;
+    gap: 12px;
+    margin-block-start: 8px;
+  }
+
+  .music-cover {
+    inline-size: 45px;
+    block-size: 45px;
+  }
+
+  .music-track-name {
+    font-size: 13px;
+  }
+
+  .music-time {
+    font-size: 10px;
+    min-inline-size: 32px;
+  }
+
+  .music-controls {
+    gap: 8px;
+  }
+
+  .music-control-btn img {
+    inline-size: 18px;
+    block-size: 18px;
+  }
+
+  .music-control-btn.play-pause img {
+    inline-size: 24px;
+    block-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    inline-size: 95%;
+    max-inline-size: 95vw;
+    padding-block: 10px;
+    padding-inline: 10px;
+    gap: 10px;
+  }
+
+  .card {
+    inline-size: 95%;
+    max-inline-size: 95vw;
+    padding-block: 30px;
+    padding-inline: 20px;
+    min-block-size: 300px;
+  }
+
+  .music-player {
+    inline-size: 95%;
+    max-inline-size: 95vw;
+  }
 }

@@ -1,13 +1,25 @@
-:root{--cursor-size:32px;--cursor-image:url('')}
-*{cursor:none!important}
-.custom-cursor{
-  position:fixed;
-  width:var(--cursor-size);
-  height:var(--cursor-size);
-  pointer-events:none;
-  z-index:3;
-  transform:translate(-50%,-50%);
-  background:var(--cursor-image) center/contain no-repeat;
-  will-change:transform;
+:root {
+    --cursor-size: 32px;
+    --cursor-image: url('');
 }
-@media(hover:none),(pointer:coarse){.custom-cursor{display:none!important}}
+
+* {
+    cursor: none !important;
+}
+
+.custom-cursor {
+    position: fixed;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    pointer-events: none;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    background: var(--cursor-image) no-repeat center/contain;
+    will-change: transform;
+}
+
+@media (hover: none), (pointer: coarse) {
+    .custom-cursor {
+        display: none !important;
+    }
+}

@@ -6,7 +6,7 @@
   inline-size: 100%;
   max-inline-size: 500px;
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 .card {
@@ -19,47 +19,47 @@
   max-inline-size: 500px;
   min-block-size: 400px;
   block-size: auto;
-  padding: var(--card-pad);
-  gap: var(--card-gap);
+  padding: 50px;
+  gap: 25px;
   overflow: visible;
   background: transparent;
-  border-radius: var(--card-border-radius);
-  backdrop-filter: blur(var(--card-blur)) opacity(var(--card-opacity));
-  -webkit-backdrop-filter: blur(var(--card-blur)) opacity(var(--card-opacity));
+  border-radius: var(--card-border-radius, 20px);
+  backdrop-filter: blur(var(--card-blur, 10px));
+  -webkit-backdrop-filter: blur(var(--card-blur, 10px));
 }
 
 @media (max-width: 768px) {
   .container {
     inline-size: 95%;
     max-inline-size: 95vw;
-    padding: var(--container-pad-md);
+    padding: 10px;
   }
 
   .card {
     inline-size: 95%;
     max-inline-size: 95vw;
-    padding: var(--card-pad-md);
-    min-block-size: var(--card-min-h-md);
+    padding: 30px 20px;
+    min-block-size: 350px;
   }
 }
 
 @media (max-width: 600px) {
   .card {
-    padding: var(--card-pad-sm);
-    min-block-size: var(--card-min-h-sm);
-    gap: var(--card-gap-sm);
+    padding: 25px 15px;
+    min-block-size: 300px;
+    gap: 15px;
   }
 
   .avatar {
-    inline-size: var(--avatar-sm);
-    block-size: var(--avatar-sm);
+    inline-size: 100px;
+    block-size: 100px;
   }
 
   .username {
-    font-size: var(--username-size-sm);
+    font-size: 26px;
   }
 
   .description {
-    font-size: var(--description-size-sm);
+    font-size: 16px;
   }
 }
