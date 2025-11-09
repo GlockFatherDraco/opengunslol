@@ -1,7 +1,4 @@
-:root {
-    --typing-cycle-duration: 8s;
-    --typing-cursor-blink: 0.75s;
-}
+
 
 @keyframes type-untype {
     0% {

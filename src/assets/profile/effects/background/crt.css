@@ -1,9 +1,4 @@
-:root {
-    --scan-width: 0.2rem;
-    --scan-color: rgba(0, 0, 0, 0.25);
-    --scan-opacity: 0.75;
-    --crt-z-index: 1;
-}
+
 
 body::before {
     content: '';

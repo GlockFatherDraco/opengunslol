@@ -1,8 +1,8 @@
 :root {
-    --card-border-radius: 28px;
-    --avatar-border-radius: 50%;
-    --social-icon-border-radius: 20px;
-    --button-border-radius: 9999px;
+    --card-border-radius: 100px;
+    --avatar-border-radius: 100%;
+    --social-icon-border-radius: 100px;
+    --button-border-radius: 100px;
 }
 
 .card {

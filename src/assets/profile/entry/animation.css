@@ -1,8 +1,4 @@
-:root {
-    --entry-text-animation: fadeInUp;
-    --entry-text-delay: 0.3s;
-    --entry-sub-text-delay: 0.6s;
-}
+
 
 @keyframes fadeInUp {
     from {

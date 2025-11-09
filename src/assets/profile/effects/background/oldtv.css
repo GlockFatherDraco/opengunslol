@@ -1,8 +1,4 @@
-:root {
-    --tv-scanline-opacity: 0.15;
-    --tv-flicker-speed: 0.1s;
-    --tv-vignette-strength: 0.5;
-}
+
 
 .oldtv-effect {
     position: fixed;
