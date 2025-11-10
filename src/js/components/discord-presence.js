@@ -35,7 +35,6 @@
     HIDE_DELAY_MS: 100
   };
 
-  /* internals */
   let updateInterval = null;
 
   const $ = (s) => document.querySelector(s);
