@@ -66,7 +66,7 @@
         default: return nonCustom.name || 'Active';
       }
     }
-    return (custom && (custom.state || custom.name)) || 'No active activity';
+    return (custom && (custom.state || custom.name)) || 'currently doing nothing';
   }
 
   function updateUI(elements, data) {
