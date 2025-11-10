@@ -1,9 +1,26 @@
 (function () {
   'use strict';
 
-  const FETCH_INTERVAL_MS = 30000;
-  const FETCH_TIMEOUT_MS = 7000;
-  const LANYARD_API = (id) => `https://api.lanyard.rest/v1/users/${id}`;
+  const CONFIG = {
+    FETCH_INTERVAL_MS: 30000,
+    FETCH_TIMEOUT_MS: 7000,
+    LANYARD_API: (id) => `https://api.lanyard.rest/v1/users/${id}`,
+    PLACEHOLDER_USER_ID: 'YOUR_DISCORD_USER_ID',
+    STRINGS: {
+      OFFLINE: 'Offline',
+      NO_USER_ID_SET: 'No user ID set',
+      ADD_DISCORD_ID: 'Add a Discord ID to enable presence',
+      DATA_ERROR: 'Data error',
+      UNEXPECTED_PAYLOAD: 'Unexpected payload',
+      USER_NOT_FOUND: 'User not found',
+      CHECK_DISCORD_ID: 'Check Discord user ID',
+      API_ERROR: 'API error',
+      CONNECTION_ERROR_TITLE: 'Connection error',
+      CONNECTION_ERROR_ACTIVITY: 'currently doing nothing',
+      ACTIVITY_NONE: 'currently doing nothing'
+    }
+  };
+
   let updateInterval = null;
 
   const $ = (s) => document.querySelector(s);
@@ -30,12 +47,11 @@
       document.body.removeChild(ta);
       return true;
     } catch (err) {
-      console.error('Clipboard failed', err);
       return false;
     }
   }
 
-  async function fetchWithTimeout(url, timeout = FETCH_TIMEOUT_MS) {
+  async function fetchWithTimeout(url, timeout = CONFIG.FETCH_TIMEOUT_MS) {
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeout);
     try {
@@ -47,15 +63,19 @@
 
   function activityText(data = {}) {
     const status = data.discord_status || 'offline';
-    if (status === 'offline') return 'Offline';
+    if (status === 'offline') return CONFIG.STRINGS.OFFLINE;
+
     if (data.listening_to_spotify && data.spotify) {
       const s = data.spotify;
       return `Listening to ${s.song} by ${s.artist}`;
     }
+
     const activities = Array.isArray(data.activities) ? data.activities : [];
-    if (!activities.length) return 'No active activity';
+    if (!activities.length) return CONFIG.STRINGS.ACTIVITY_NONE;
+
     const nonCustom = activities.find(a => a.type !== 4);
     const custom = activities.find(a => a.type === 4);
+
     if (nonCustom) {
       switch (nonCustom.type) {
         case 0: return `Playing ${nonCustom.name}`;
@@ -66,12 +86,14 @@
         default: return nonCustom.name || 'Active';
       }
     }
-    return (custom && (custom.state || custom.name)) || 'currently doing nothing';
+
+    return (custom && (custom.state || custom.name)) || CONFIG.STRINGS.ACTIVITY_NONE;
   }
 
   function updateUI(elements, data) {
     if (!data) return;
     const user = data.discord_user || {};
+
     if (elements.avatar) {
       const isAnimated = typeof user.avatar === 'string' && user.avatar.startsWith('a_');
       const ext = isAnimated ? 'gif' : 'png';
@@ -81,14 +103,17 @@
       setSrc(elements.avatar, avatarUrl);
       setAttr(elements.avatar, 'alt', `${user.username || 'User'} avatar`);
     }
+
     if (elements.username) {
       const display = user.display_name || user.global_name || (user.username ? `${user.username}#${user.discriminator}` : 'Unknown user');
       setText(elements.username, display);
     }
+
     if (elements.statusIcon) {
       const apiStatus = data.discord_status || 'offline';
       elements.statusIcon.className = `discord-status-icon ${apiStatus === 'offline' ? 'invisible' : apiStatus}`;
     }
+
     if (elements.activity) setText(elements.activity, activityText(data));
   }
 
@@ -120,14 +145,16 @@
 
     async function fetchDiscordData() {
       const userId = getUserIdFromDom();
-      if (!userId || userId === 'YOUR_DISCORD_USER_ID') {
-        setText(elements.username, 'No user ID set');
-        setText(elements.activity, 'Add a Discord ID to enable presence');
+      if (!userId || userId === CONFIG.PLACEHOLDER_USER_ID) {
+        setText(elements.username, CONFIG.STRINGS.NO_USER_ID_SET);
+        setText(elements.activity, CONFIG.STRINGS.ADD_DISCORD_ID);
         return;
       }
+
       try {
-        const res = await fetchWithTimeout(LANYARD_API(userId));
-        if (!res) throw new Error('No response');
+        const res = await fetchWithTimeout(CONFIG.LANYARD_API(userId));
+        if (!res) return;
+
         if (res.ok) {
           const json = await res.json();
           if (json?.success && json?.data) {
@@ -138,21 +165,21 @@
             }
             return;
           }
-          setText(elements.username, 'Data error');
-          setText(elements.activity, 'Unexpected payload');
+          setText(elements.username, CONFIG.STRINGS.DATA_ERROR);
+          setText(elements.activity, CONFIG.STRINGS.UNEXPECTED_PAYLOAD);
           return;
         }
+
         if (res.status === 404) {
-          setText(elements.username, 'User not found');
-          setText(elements.activity, 'Check Discord user ID');
+          setText(elements.username, CONFIG.STRINGS.USER_NOT_FOUND);
+          setText(elements.activity, CONFIG.STRINGS.CHECK_DISCORD_ID);
         } else {
-          setText(elements.username, 'API error');
+          setText(elements.username, CONFIG.STRINGS.API_ERROR);
           setText(elements.activity, `Status: ${res.status}`);
         }
       } catch (err) {
-        setText(elements.username, 'Connection error');
-        setText(elements.activity, 'See console for details');
-        console.error('Lanyard fetch error', err);
+        setText(elements.username, CONFIG.STRINGS.CONNECTION_ERROR_TITLE);
+        setText(elements.activity, CONFIG.STRINGS.CONNECTION_ERROR_ACTIVITY);
       }
     }
 
@@ -164,9 +191,7 @@
         if (!userId) return;
         const url = `https://discord.com/users/${userId}`;
         await copyToClipboard(url);
-      } catch (err) {
-        console.error('Copy failed', err);
-      }
+      } catch (err) {}
     });
 
     ['mouseenter', 'focus'].forEach(ev => badge.addEventListener(ev, showCard));
@@ -179,7 +204,7 @@
 
     fetchDiscordData();
     if (updateInterval) clearInterval(updateInterval);
-    updateInterval = setInterval(fetchDiscordData, FETCH_INTERVAL_MS);
+    updateInterval = setInterval(fetchDiscordData, CONFIG.FETCH_INTERVAL_MS);
 
     window.addEventListener('beforeunload', () => {
       if (updateInterval) { clearInterval(updateInterval); updateInterval = null; }
