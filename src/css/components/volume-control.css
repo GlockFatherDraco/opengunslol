@@ -6,7 +6,7 @@
   align-items:center;
   gap:10px;
   z-index:5;
-  transition:opacity .8s cubic-bezier(.34,1.56,.64,1),transform .8s cubic-bezier(.34,1.56,.64,1);
+  transition:transform .8s cubic-bezier(.34,1.56,.64,1);
 }
 
 .volume-button{

@@ -179,3 +179,94 @@
     opacity: 0.6;
   }
 }
+
+/* Responsive Discord Presence */
+@media (max-width: 768px) {
+  .discord-presence-badge {
+    top: 15px;
+    right: 15px;
+  }
+  
+  .discord-presence-card {
+    max-width: 95%;
+    padding: 0 12px;
+    gap: 10px;
+    height: 72px;
+  }
+  
+  .discord-avatar-container {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .discord-avatar {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .discord-username {
+    font-size: 13px;
+  }
+  
+  .discord-activity {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 600px) {
+  .discord-presence-badge {
+    top: 12px;
+    right: 12px;
+  }
+  
+  .discord-presence-card {
+    max-width: 90%;
+    height: 68px;
+    padding: 0 10px;
+  }
+  
+  .discord-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .discord-status-icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .discord-presence-badge {
+    top: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .discord-presence-card {
+    max-width: 85%;
+    height: 65px;
+    padding: 0 8px;
+  }
+  
+  .discord-avatar {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .discord-username {
+    font-size: 12px;
+  }
+  
+  .discord-activity {
+    font-size: 10px;
+  }
+  
+  .discord-status-icon {
+    width: 9px;
+    height: 9px;
+    bottom: 1px;
+    right: 1px;
+  }
+}
