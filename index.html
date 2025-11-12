@@ -15,9 +15,18 @@
   <link rel="icon" type="image/x-icon" href="src/assets/icons/favicon/favicon.png">  
   
   <!-- FONTS -->  
-  <link rel="stylesheet" href="src/css/core/fonts.css">  
-  <!-- VARIABLES -->  
-  <link rel="stylesheet" href="src/css/core/variables.css">  
+  <style>
+    @font-face {
+      font-family: "VCR OSD Mono";
+      src: url("src/assets/fonts/VCR_OSD_MONO.woff2") format("woff2");
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+  </style>  
+  
+  <!-- STYLES -->  
+  <link rel="stylesheet" href="src/styles.css">
   
   <!-- THEME -->  
   <link rel="stylesheet" href="src/assets/profile/general/colors/default.css">  
@@ -34,23 +43,9 @@
   
   <!-- EFFECTS -->  
   <link rel="stylesheet" href="src/assets/profile/effects/click/default.css">  
-  <link rel="stylesheet" href="src/assets/profile/effects/username/default.css">  
+  <link rel="stylesheet" href="src/assets/profile/effects/username/rainbow.css">  
   <link rel="stylesheet" href="src/assets/profile/effects/background/crt.css">  
   <link rel="stylesheet" href="src/assets/profile/effects/glow/combined-glow.css">  
-  
-  <!-- BACKGROUND + CURSOR STYLES -->  
-  <link rel="stylesheet" href="src/css/effects/background.css">  
-  <link rel="stylesheet" href="src/css/utils/cursor.css">  
-  
-  <!-- COMPONENTS -->  
-  <link rel="stylesheet" href="src/css/core/base.css">  
-  <link rel="stylesheet" href="src/css/components/card.css">  
-  <link rel="stylesheet" href="src/css/components/social.css">  
-  <link rel="stylesheet" href="src/css/core/entry.css">  
-  <link rel="stylesheet" href="src/css/components/music-player.css">  
-  <link rel="stylesheet" href="src/css/components/volume-control.css">  
-  <link rel="stylesheet" href="src/css/components/discord-presence.css">  
-  <link rel="stylesheet" href="src/css/layout/responsive.css">  
     
   <!-- Replace with your actual Discord user ID -->  
   <meta name="discord-user-id" content="752594479902621736">  
@@ -208,14 +203,6 @@ loadBackground("src/assets/profile/background/minecraft-sunset.mp4")
   </div>  
   
   <!-- SCRIPTS -->  
-  <script src="src/js/utils/cursor.js"></script>  
-  <script src="src/js/effects/background-effects.js"></script>  
-  <script src="src/js/core/entry.js"></script>  
-  <script src="src/js/effects/animations.js"></script>  
-  <script src="src/js/components/music-player.js"></script>  
-  <script src="src/js/components/volume-control.js"></script>  
-  <script src="src/js/components/discord-presence.js"></script>  
-  <script src="src/js/core/main.js"></script>  
-  <script src="src/js/effects/title-animation.js"></script>  
+  <script src="src/scripts.js"></script>  
 </body>  
 </html>
